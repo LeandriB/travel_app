@@ -1,10 +1,10 @@
-# NLP Evaluate News Article
+# Travel App
 
 ## About
 
-The goal for this project is to create a web tool that runs a Natural Language Processing(NLP) API on an article that is provided by the user via a url. 
+The goal for this project is to create and build out a travel app that allows the user to enter a location & trip date, and in return displays weather as well as an image of the location using information from 3 external API's.
 
-> NLP is the ability of an application to understand the human language, written or oral.
+> The world is a book and those who do not travel reads only one page - Saint Augustine
 
 ## Installation
 
