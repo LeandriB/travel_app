@@ -4,7 +4,7 @@
 
 The goal for this project is to create and build out a travel app that allows the user to enter a location & trip date, and in return displays weather as well as an image of the location using information from 3 external API's.
 
-> The world is a book and those who do not travel reads only one page - Saint Augustine
+> The world is a book and those who do not travel read only one page - Saint Augustine
 
 ## Installation
 
