@@ -7,19 +7,23 @@ import { validating } from "./validateInput";
 // Setup empty JS object to act as endpoint for all routes
 let tripData = {};
 
+// Create a new date instance dynamically with JS
+let d = new Date();
+let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
 // Declare API credentials for Geonames below
-const geoNamesUrl = 'https://api.geonames.org/searchJSON?q=';
-const geoNamesParams = '&maxRows=1&username=';
+const geoNamesUrl = `https://api.geonames.org/searchJSON?q=`;
+const geoNamesParams = `&maxRows=1&username=`;
 const geoNamesKey = process.env.API_KEY1;
 
 // Declare API credentials for Weatherbit below
-const weatherbitUrl = 'https://api.weatherbit.io/v2.0/history/daily?';
-const weatherbitParams = `city=${destination}&key=`;
+const weatherbitUrl = `https://api.weatherbit.io/v2.0/history/daily?`;
+const weatherbitParams = `lat=${latitude}&lon=${longitude}&key=`;
 //const weatherbitParams = 'lat=${latitude}&lon=${longitude}&key='; // Change params
 const weatherbitKey = process.env.API_KEY2;
 
 // Declare API credentials for Pixabay below
-const pixabayUrl = 'https://pixabay.com/api/?key=';
+const pixabayUrl = `https://pixabay.com/api/?key=`;
 const pixabayParams = `&q=${destination}&image_type=photo`; // Change params?
 const pixabayKey = process.env.API_KEY3;
 
@@ -35,25 +39,28 @@ async function performAction(event) {
     const start = document.getElementById('start-date').value;
     const end = document.getElementById('end-date').value;
 
-    if(Client.validating(formValues)) {
-        const response = await fetch("http://localhost:8081/post", {
-            method: "POST",
-            credentials: "same-origin",
-            mode: "cors",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(formValues)
-        }).then(data => data.json())
-        .then(function(data) {
-            console.log(data);
-            // ADD modal querySelectors
-        }).catch((error) => {
-            console.log('Error: ', error);
-        });
-    } else {
+    if(Client.validating(destination, start, end)) {
+        // Call API's
+        getCity(geoNamesUrl, destination, geoNamesParams, geoNamesKey)
+        .then((data) => {
+            return postTrip('/geonames', {latitude: data.geonames[0].lat, longitude: data.geonames[0].lon});
+        }).then((response => {
+            const latitude = response[response.length - 1].latitude;
+            const longitude = response[response.length - 1].longitude;
+            return {latitude, longitude};
+        }).then(({latitude, longitude}) => {
+            return getWeather(weatherbitUrl, weatherbitParams, weatherbitKey); // take in lat & lon as params?
+        }).then((weatherData) => {
+            return postTrip('/weather', {high: weatherData.data[0].high_temp, low: weatherData.data[0].low_temp, description: weatherData.data[0].description});
+        }).then(() => {
+            return getPicture(pixabayUrl, pixabayKey, pixabayParams);
+        }).then((data) => {
+            return postTrip('/image', {image: data.hits[0].webformatURL});
+        }).then(updateUI('/all'))
+            
+    )} else {
         // Sweetalert for error message
-        swal("Error", "Invalid URL");
+        swal("Error", "Invalid Input");
     }
 
 };
@@ -67,7 +74,7 @@ const getCity = async(geoNamesUrl, destination, geoNamesParams, geoNamesKey) => 
         const data = await response.json();
         return data;
     } catch(error) {
-        console.log("Error: ", error);
+        console.log("Error with Geonames: ", error);
     }
 };
 
@@ -78,7 +85,7 @@ const getWeather = async(weatherbitUrl, weatherbitParams, weatherbitKey) => {
         const data = await response.json();
         return data;
     } catch(error) {
-        console.log("Error: ", error);
+        console.log("Error with Weatherbit: ", error);
     }
 };
 
@@ -89,11 +96,11 @@ const getPicture = async(pixabayUrl, pixabayKey, pixabayParams) => {
         const data = await response.json();
         return data;
     } catch(error) {
-        console.log("Error: ", error)
+        console.log("Error with Pixabay: ", error)
     }
 };
 
-// Function for POST data
+// Function to POST data
 
 const postTrip = async(url='', data={}) => {
     const response = await fetch(url, {
@@ -114,7 +121,29 @@ const postTrip = async(url='', data={}) => {
     };
 };
 
+// Function to update the UI
+
+const updateUI = async() => {
+    const request = await fetch('/all');
+    try {
+        const allData = await request.json();
+        document.getElementById('place').innerHTML = allData.place;
+        document.getElementById('high').innerHTML = allData.high + "deg;F";
+        document.getElementById('low').innerHTML = allData.low + "deg;F";
+        document.getElementById('description').innerHTML = allData.description;
+        document.getElementById('image').src = allData.image;
+
+    }catch(error) {
+        console.log("Error: ", error);
+    }
+};
 
 
 
-export { performAction }
+
+export { performAction,
+         getCity,
+         getWeather,
+         getPicture,
+         postTrip,
+         updateUI }
