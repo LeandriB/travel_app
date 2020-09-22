@@ -1,6 +1,6 @@
 // Import functions
 import { performAction } from '.js/formHandler'
-import { searchResult } from '.js/modalResult'
+import { showModal } from '.js/modalResult'
 import { validating } from '.js/validatingInput'
 
 // Importing SASS
@@ -14,6 +14,6 @@ import './styles/modal.scss'
 // Export functions
 export {
     performAction,
-    searchResult,
+    showModal,
     validating
 }
