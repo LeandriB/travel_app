@@ -1,3 +1,6 @@
+// Setup empty JS object to act as endpoint for all routes
+let tripData = {};
+
 // Dependencies
 var path = require('path');
 
@@ -25,7 +28,7 @@ app.use(cors());
 const fetch = require('node-fetch');
 
 // Designates what port the app will listen to for incoming requests
-const port = 8080;
+const port = 8080; // Change PORT?
 // call to debug
 app.listen(port, function() {
     console.log(`Travel app is listening on  ${port}!`)
@@ -37,3 +40,46 @@ app.get('/', function(request, response) {
 });
 
 // Add POST routes
+
+// POST route for geonames
+app.post('/geonames', geonames);
+
+async function geonames(request, response) {
+    geonamesData = {
+        latitude: request.body.lat,
+        longitude: request.body.lon,
+    };
+    tripData.push(geonamesData);
+    console.log("User input: ", tripData);
+    response.send(tripData);
+};
+
+// POST route for wethaerbit
+
+app.post('/weather', weatherbit);
+
+async function weatherbit(request, response) {
+    weatherbitData = {
+        high: request.body.high,
+        low: request.body.low,
+        description: request.body.description,
+    };
+    tripData.push(weatherbitData);
+    console.log("User input: ", tripData);
+    response.send(tripData);
+};
+
+// POST route for pixabay
+
+app.post('/image', pixabay);
+
+async function pixabay(request, response) {
+    pixabayData = {
+        image: request.body.image,
+    };
+    tripData.push(pixabayData);
+    console.log("User input: ", tripData);
+    response.send(tripData);
+};
+
+module.exports = server;
