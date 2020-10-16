@@ -1,53 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Weather Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class='home_container'>
-    <div class='video_container'>
-      <video autoplay loop muted>
-        <source src='video/clouds_smaller.mp4' type='video/mp4'>
-      </video>
-    </div>
-    <div class='app_container'>
-      <div id='app'>
-        <div class='app_header'>
-          <h1>Weather Journal</h1>
-        </div>
-        <!-- Check action for div -->
-        <div class='app_form'>
-          <div class='form_info'>
-            <label for='zip'>Enter Zipcode Here:</label>
-            <input type='text' id='zip' name='user_zip' placeholder=''>
-            <label for='zip'>How are you feeling today:</label>
-            <textarea type='text' id='feelings' name='user_feeling'></textarea>
-            <button id='generate' type='sumbit'>Generate</button>
-          </div>
-        </div>
-        <div class='form_output'>
-          <div class='output_header'>
-            <h2>Most Recent Entry</h2>
-          </div>
-          <div id='entry'>
-            <div class='entry_date'>
-              <div id='date'></div>
-            </div>
-            <div class='entry_temperature'>
-              <div id='temperature'></div>
-            </div>
-            <div class='entry_content'>
-              <div id='content'></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<script src="app.js" type="text/javascript"></script>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Travel App</title>
+</head>
+
+<body>
+    <!--<section class="top-line"></section>-->
+    <section class="home-container">
+        <section class="home-image"></section>
+        <section class="home-body">
+          <main class="main">
+            <!-- Header -->
+            <header>
+              <span class="ease-right-expand">
+                  <h1 class="color">Travel Planner</h1>
+              </span>
+            </header>
+        
+            <!-- Form -->
+        
+            <section id="form-section" class="section section__planner">
+              <div class="form-container">
+                <form class="form__content" id="form">
+                  <h2 class="form-text">Plan your trip</h2>
+                  <input type="text" id="input-from" name="from" placeholder="Departing"
+                    autocomplete="off" required>
+                  <input type="text" id="input-to" name="to" placeholder="Arriving" autocomplete="off"
+                    required>
+                  <input type="date" id="input-date" name="date" required>
+                  <button type="submit" class="input__submit" name="submit" value="Submit">Search</button>
+                </form>
+              </div>
+            </section>
+        
+          </main>
+
+            <!-- Section Result -->
+        
+            <section id="result" class="result-container section__result invisible">
+              <div class="container results">
+                <div class="result__image">
+                  <img alt="destination image" id="pixabay">
+                </div>
+                <div class="result__content">
+    
+                  <h2 class="city__name text__result">Destination: <span id="city"></span></h2>
+
+                  <h2 class="date__name text__result">Departing: <span id="date">DD/MM/YYYY</span></h2>
+
+                  <h2 class="days__name text__result">Trip starts in <span id="days"> NUM </span> days</h2>
+        
+                  <h2 class="weather__name text__result">Weather will be <span id="weather"></span> for a high, <span
+                      id="summary"></span>.</h2>
+                      <!-- Change print button to SAVE for local storage-->
+                  <button class="button button__save" id="save" href="#">Print</button>
+                  <!-- Change delete button to CANCEL -->
+                  <button class="button button__delete" id="delete" href="#">Delete</button>
+        
+                </div>
+              </div>
+            </section>
+        </section>
+
+
+     </section>
+
+
+  
 </body>
+
 </html>
