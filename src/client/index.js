@@ -1,19 +1,7 @@
-// Import functions
-import { performAction } from '.js/formHandler'
-import { showModal } from '.js/modalResult'
-import { validating } from '.js/validatingInput'
+import { addTrip } from "./js/app.js"
+import { checkInput } from "./js/inputCheck.js"
+import './styles/main.scss'
 
-// Importing SASS
-// import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
-import './styles/modal.scss'
+export { addTrip }
+export { checkInput }
 
-// Export functions
-export {
-    performAction,
-    showModal,
-    validating
-}
