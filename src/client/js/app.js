@@ -1,10 +1,11 @@
-// Global Variables
+import swal from "sweetalert";
 
+// Global Variables
 const form = document.querySelector("#form");
 const result = document.querySelector("#result"); // Change to MODAL
 
-const save = document.querySelector("#save");
-const cancel = document.querySelector("#delete");
+const print = document.querySelector("#print");
+//const book = document.querySelector("#book");
 
 const dateNow = (Date.now()) / 1000;
 
@@ -29,19 +30,26 @@ const pixabayKey = "18210327-5150d9b47ecfb966ec7bb906c";
 //})
 //ABOVE CODE REMOVES ADD TRIP BUTTON
 
-// Form submit
+// Submit form button
 form.addEventListener('submit', addTrip);
 // Print button
-save.addEventListener('click', function (e) {
+print.addEventListener('click', function (event) {
+  event.preventDefault(event);
   window.print();
   location.reload();
 });
 // Delete button
-cancel.addEventListener('click', function (e) {
+/*cancel.addEventListener('click', function (event) {
+  event.preventDefault(event);
   form.reset();
-  result.classList.add("invisible");
+  result.classList.add("hidden");
   location.reload();
 })
+// Book trip button
+book.addEventListener('click', function (event) {
+  event.preventDefault(event);
+  window.open("https://www.delta.com/");
+});*/
 
 // FUNCTIONS 
 
@@ -56,7 +64,7 @@ function addTrip(event) {
 
   const newDate = (new Date(tripDate).getTime()) / 1000;
 
-  // function checkInput to validate input 
+  // Function to validate user input 
   Client.checkInput(departing, destination);
 
   getCity(geoNamesURL, destination, geoNamesKey)
@@ -68,30 +76,27 @@ function addTrip(event) {
       return weatherData;
     })
     .then((weatherData) => {
-      const daysLeft = Math.round((newDate - dateNow) / 86400);
-      const userData = postData('http://localhost:5500/add', { departing, destination, tripDate, weather: weatherData.data[0].high_temp, summary: weatherData.data[0].weather.description, daysLeft });
-      return userData;
-    }).then((userData) => {
-      updateUI(userData);
+      const daysToTrip = Math.round((newDate - dateNow) / 86400);
+      const allData = postTripData('http://localhost:5500/add', { departing, destination, tripDate, weather: weatherData.data[0].high_temp, description: weatherData.data[0].weather.description, daysToTrip });
+      return allData;
+    }).then((allData) => {
+      showModal(allData);
     })
 }
 
-//function getCity to get city information from Geonames (latitude, longitude, country)
-
+// Function to get city data from Geonames API
 const getCity = async (geoNamesURL, destination, geoNamesKey) => {
-  // res equals to the result of fetch function
   const response = await fetch(geoNamesURL + destination + "&maxRows=10&" + "username=" + geoNamesKey);
   try {
     const cityData = await response.json();
-    // Possibly declare value here??
     return cityData;
   } catch (error) {
     console.log("error", error);
+    swal("ERROR", error);
   }
 };
 
-// function getWeather to get weather information from Dark Sky API 
-
+// Functiont to get weather data from Weatherbit API
 const getWeather = async (latitude, longitude) => {
   const response = await fetch(weatherbitURL + "lat=" + latitude + "&lon=" + longitude + "&key=" + weatherbitKey);
   try {
@@ -99,11 +104,12 @@ const getWeather = async (latitude, longitude) => {
     return weatherData;
   } catch (error) {
     console.log("error", error);
+    swal("ERROR", error);
   }
 }
 
-// Function postData to POST data to our local server
-const postData = async (url = '', data = {}) => {
+// Function to POST data
+const postTripData = async (url = '', data = {}) => {
   const response = await fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -111,46 +117,125 @@ const postData = async (url = '', data = {}) => {
       "Content-Type": "application/json;charset=UTF-8"
     },
     body: JSON.stringify({
-      depCity: data.departing,
-      arrCity: data.destination,
-      depDate: data.tripDate,
+      departing: data.departing,
+      destination: data.destination,
+      tripDate: data.tripDate,
       weather: data.weather,
-      summary: data.description,
-      daysLeft: data.daysLeft
+      description: data.description,
+      daysToTrip: data.daysToTrip
     })
   })
   try {
-    const userData = await response.json();
-    return userData;
+    const allData = await response.json();
+    return allData;
   } catch (error) {
     console.log("error", error);
+    swal("ERROR", error);
   }
 }
 
-// Function update UI that reveals the results page with updated trip information including fetched image of the destination
-
-const updateUI = async (userData) => {
-  result.classList.remove("invisible");
-  result.scrollIntoView({ behavior: "smooth" });
-
-  const response = await fetch(pixabayURL + pixabayKey + "&q=" + userData.arrCity + "+city&image_type=photo");
+// Function to show the results from user input
+const showModal = async (allData) => {
+  result.classList.remove("hidden");
+  // Fetch city image from Pixabay API
+  const response = await fetch(pixabayURL + pixabayKey + "&q=" + allData.destination + "+city&image_type=photo");
 
   try {
     const getImage = await response.json();
-    document.querySelector("#city").innerHTML = userData.arrCity;
-    document.querySelector("#date").innerHTML = userData.depDate;
-    document.querySelector("#days").innerHTML = userData.daysLeft;
-    document.querySelector("#summary").innerHTML = userData.description;
-    document.querySelector("#weather").innerHTML = Math.round(userData.weather * 9 / 5 + 32)+ "&deg;F";
+    document.querySelector("#city").innerHTML = allData.destination;
+    document.querySelector("#date").innerHTML = allData.tripDate.split("-").reverse().join("-");
+    document.querySelector("#days").innerHTML = allData.daysToTrip;
+    document.querySelector("#summary").innerHTML = allData.description.toLowerCase();
+    document.querySelector("#weather").innerHTML = Math.round(allData.weather * 9 / 5 + 32)+ "&deg;F";
     document.querySelector("#pixabay").setAttribute('src', getImage.hits[0].webformatURL);
   }
   catch (error) {
     console.log("error", error);
+    swal("ERROR", error);
   }
 }
 
-export { updateUI,
-         postData,
+// Local Storage
+// Variables for Local Storage 
+const save = document.querySelector("#save");
+const tripList = document.querySelector(".trip-container");
+const userInput = document.querySelector(".result-container"); // Remove?
+
+function template(data) {
+
+  tripList.insertAdjacentHTML("beforeend", 
+  `<div class="container results">
+        <div class="result-image">
+            <img class="image" alt="destination image" src="${data.pixabay}">
+        </div>
+        <div class="result-content">
+                 
+          <h2 class="city text-result">Destination: <span>${data.destination}</span></h2>
+
+          <h2 class="date text-result">Departing: <span>${data.departing}</span></h2>
+
+          <h2 class="days text-result">Trip starts in <span> ${data.days} </span> days</h2>
+        
+          <h2 class="weather text-result">Weather will be <span>${data.weather}</span> for a high with 
+          <span>${data.summary}</span>.</h2>
+
+          <button class="button button-book" id="book" href="#">Book</button>
+
+          <button class="button button-delete" id="delete" href="#">Delete</button>
+        </div>
+    </div>`);
+
+    const cancel = document.querySelector("#delete");
+// Delete button
+cancel.addEventListener('click', function (event) {
+  event.preventDefault();
+  form.reset();
+  result.classList.add("hidden");
+  location.reload();
+})
+
+const book = document.querySelector("#book");
+// Book
+book.addEventListener('click', function (event) {
+  event.preventDefault();
+  window.open("https://www.delta.com/");
+});
+}
+
+function addToTripList(event) {
+   
+  const data = {
+      destination: city.value,
+      weather: weather.value,
+      description: summary.value,
+      daysToTrip: days.value,
+      pixabay: pixabay.value
+  };
+
+  event.preventDefault();
+
+  template(data);
+
+  localStorage.setItem("savedTrips", userInput.innerHTML);
+}
+// Works to above code
+save.addEventListener('click', addToTripList, function(event) {
+  event.preventDefault();
+  tripList.scrollIntoView({ behavior: 'smooth' });
+  form.reset();
+  result.classList.add("hidden");
+}
+
+
+)
+const saved = localStorage.getItem("savedTrips");
+
+if (saved) {
+  tripList.innerHTML = saved;
+}
+
+export { showModal,
+         postTripData,
          getWeather,
          getCity,
          addTrip }
