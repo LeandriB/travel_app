@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const GoogleFontsPlugin = require('google-fonts-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -10,7 +11,8 @@ module.exports = {
     stats: 'verbose',
     output: {
         libraryTarget: 'var',
-        library: 'Client'
+        library: 'Client',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules:[
@@ -46,6 +48,12 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        })
+        }),
+        new GoogleFontsPlugin({
+            fonts: [
+              { family: "Gochi Hand" },
+              { family: "Open Sans" }
+            ]
+          })
     ]
 }
