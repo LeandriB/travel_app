@@ -16,7 +16,7 @@ main {
 
 section{ 
   display: block;
-  position: absolute;
+  position: relative;
 }
 
 div {
@@ -47,7 +47,7 @@ div {
 
 .top-line {
   position: absolute;
-  top: 0;
+  bottom: 0;
   height: 5px;
   width: 100vw;
   background-color: $secondary-color;
@@ -140,7 +140,7 @@ div {
         text-align: center;
         font-weight: 200;
       }
-  // chnage to input
+
 
       input {
         margin-top: 2rem;
@@ -172,79 +172,19 @@ div {
         cursor: pointer;
         background-color: $secondary-color;
         box-shadow: inset 0 100px 0 0 $secondary-color;
-    }
-  /*
-      .input__from {
-        grid-column: 1/3;
-        grid-row: 2/3;
-      }
-  
-      .input__to {
-        grid-column: 1/3;
-        grid-row: 3/4;
-      }
-  
-      .date__label {
-        color: $color-black;
-        //font-family: $font-headings;
-        font-size: 1rem;
-        height: 100%;
-        grid-column: 1/3;
-        grid-row: 4/5;
-        opacity: 0.8;
-        padding: 0.3rem;
-        padding-top: 1rem;
-        text-align: left;
-  
-        @media only screen and (min-width: 350px) {
-          font-size: 0.8rem;
-        }
-      }
-  
-      .input__date {
-        background: rgba(0,0,0,.1);
-        border: 0.1rem solid rgba(0,0,0,.1);
-        //font-family: $font-headings;
-        grid-column: 1/3;
-        grid-row: 5/6;
-        height: 100%;
-        font-size: 1rem;
-        outline: none;
-        padding: 0.3rem;
-        text-align: left;
-        width: 100%;
-  
-        @media only screen and (min-width: 350px) {
-          font-size: 0.8rem;
-        }
-  
-        @media only screen and (min-width: 768px) {
-          padding: 0.5rem 0.3rem;
-        }
-  
-        @media only screen and (min-width: 992px) {
-          padding: 1rem 0.3rem;
-        }
-  
-        .input__date:focus {
-          box-shadow: none;
-        }
-      }*/
-  // change to button
-      
+    } 
   
   // Modal
 
   .result-container{
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    //background-color: #f7f7f78f;
+    display: block;
+    position: absolute;
     background-color: #d55d2d73;
   }
   
-  .result__image {
+  .result-image {
     height: 10rem;
     margin: 1rem 0;
     overflow: hidden;
@@ -269,19 +209,16 @@ div {
       width: 100%;
     }
   }
+  
   //Change to results
-  .result__content {
+  .result-content {
       align-content: center;
       align-items: center;
       display: grid;
       grid-template-columns: 1rem repeat(2, minmax(min-content, 1fr));
       grid-template-rows: repeat(5, min-content);
-      //grid-gap: 0.5rem;
-      //font-family: $font-headings;
       font-size: 1rem;
       justify-content: center;
-      //line-height: 1.3;
-      //max-height: 100%;
       padding: 1rem;
       width: 100%;
   
@@ -302,51 +239,33 @@ div {
          padding: 1rem 1rem 1rem 3rem;
       }
   
-      .icon__result {
-        justify-self: center;
-        color: $primary-color;
-        grid-column: 1/2;
-        font-size: 1rem;
-  
-        @media only screen and (min-width: 576px) {
-          font-size: 1.5rem;
-        }
-  
-        @media only screen and (min-width: 1200px) {
-          font-size: 2rem;
-        }
-      }
-  
-      .text__result {
+      .text-result {
         font-weight: 100;
         grid-column: 2/4;
-        //padding: 0.5rem;
       }
   
-      .city__name {
+     .city {
         grid-row: 1/2;
   
         span {
-          //background: $secondary-color;
           text-transform: capitalize;
         }
       }
   
-      .date__name {
+      .date {
         grid-row: 2/3;
 
       }
 
-      .days__name {
+      .days {
         grid-row: 3/4;
   
       }
   
-      .weather__name {
+      .weather {
         grid-row: 4/5;
  
       }
-
   
       .button {
         margin-left: 3rem;
@@ -355,7 +274,6 @@ div {
         border-radius: 5px;
         color: $color-dark;
         display: block;
-      //font-family: $font-text;
         font-size: 18px;
         opacity: 0.9;
         padding: 0.5rem 0;
@@ -378,7 +296,7 @@ div {
       }
       }
   
-      .button__save {
+      .button-print {
         color: $secondary-color;
         background:$primary-color;
         grid-column: 2/3;
@@ -386,30 +304,64 @@ div {
         font-size: 18px;
         
       }
+
+      .button-save {
+        color: $secondary-color;
+        background:$primary-color;
+        grid-column: 3/4;
+        grid-row: 5/6;
+        font-size: 18px;
+        
+      }
   
-      .button__delete {
+      .button-delete {
         color: $secondary-color;
         background:$primary-color;
         grid-column: 3/4;
         grid-row: 5/6;
         font-size: 18px;
       }
+
+      .button-book {
+        color: $secondary-color;
+        background:$primary-color;
+        grid-column: 2/3;
+        grid-row: 5/6;
+        font-size: 18px;
+        
+      }
     
   }
       
+  #print:hover {
+    color: $primary-color;
+    cursor: pointer;
+    background-color: $secondary-color;
+    box-shadow: inset 0 100px 0 0 $secondary-color;
+  }
+
   #save:hover {
     color: $primary-color;
     cursor: pointer;
     background-color: $secondary-color;
     box-shadow: inset 0 100px 0 0 $secondary-color;
   }
+
   #delete:hover {
     color: $primary-color;
     cursor: pointer;
     background-color: $secondary-color;
     box-shadow: inset 0 100px 0 0 $secondary-color;
   }
+
+  #book:hover {
+    color: $primary-color;
+    cursor: pointer;
+    background-color: $secondary-color;
+    box-shadow: inset 0 100px 0 0 $secondary-color;
+  }
+
   
-  .invisible {
+  .hidden {
     display: none;
   }
