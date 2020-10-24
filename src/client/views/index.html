@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <!--<section class="top-line"></section>-->
     <section class="home-container">
         <section class="home-image"></section>
         <section class="home-body">
@@ -39,37 +38,39 @@
         
           </main>
 
-            <!-- Section Result -->
+            <!-- Modal pop-up -->
         
-            <section id="result" class="result-container section__result invisible">
+            <section id="result" class="result-container section__result hidden">
               <div class="container results">
-                <div class="result__image">
-                  <img alt="destination image" id="pixabay">
+                <div class="result-image">
+                  <img class="image" alt="destination image" id="pixabay">
                 </div>
-                <div class="result__content">
-    
-                  <h2 class="city__name text__result">Destination: <span id="city"></span></h2>
+                <div class="result-content">
+                 
+                  <h2 class="city text-result">Destination: <span id="city"></span></h2>
 
-                  <h2 class="date__name text__result">Departing: <span id="date">DD/MM/YYYY</span></h2>
+                  <h2 class="date text-result">Departing: <span id="date">DD/MM/YYYY</span></h2>
 
-                  <h2 class="days__name text__result">Trip starts in <span id="days"> NUM </span> days</h2>
+                  <h2 class="days text-result">Trip starts in <span id="days"> NUM </span> days</h2>
         
-                  <h2 class="weather__name text__result">Weather will be <span id="weather"></span> for a high, <span
+                  <h2 class="weather text-result">Weather will be <span id="weather"></span> for a high with <span
                       id="summary"></span>.</h2>
                       <!-- Change print button to SAVE for local storage-->
-                  <button class="button button__save" id="save" href="#">Print</button>
+                  <button class="button button-print" id="print" href="#">Print</button>
                   <!-- Change delete button to CANCEL -->
-                  <button class="button button__delete" id="delete" href="#">Delete</button>
+                  <button class="button button-save" id="save" href="#">Save</button>
         
                 </div>
               </div>
             </section>
         </section>
-
-
      </section>
-
-
+     <section class="top-line"></section>
+     <section id="trip-section" class="section">
+       <h2>Trip List</h2>
+       <div class="trip-container container">
+       </div>
+    </section>
   
 </body>
 
