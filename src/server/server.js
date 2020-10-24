@@ -22,7 +22,6 @@ app.use(cors());
 
 // Require node-fetch
 const fetch = require('node-fetch');
-const { response } = require('express');
 
 // Designates what port the app will listen to for incoming requests
 const port = 5500;
@@ -41,12 +40,12 @@ app.get('/', function (request, response) {
 app.post('/add', tripInfo);
 
 function tripInfo(request, response) {
-  tripData['city'] = request.body.depCity;
-  tripData['arrCity'] = request.body.arrCity;
-  tripData['depDate'] = request.body.depDate;
+  tripData['departing'] = request.body.departing;
+  tripData['destination'] = request.body.destination;
+  tripData['tripDate'] = request.body.tripDate;
   tripData['weather'] = request.body.weather;
-  tripData['summary'] = request.body.weather.description;
-  tripData['daysLeft'] = request.body.daysLeft;
+  tripData['description'] = request.body.description;
+  tripData['daysToTrip'] = request.body.daysToTrip;
   console.log("User Input: ", tripData)
   response.send(tripData);
 }
