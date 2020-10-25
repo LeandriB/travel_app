@@ -6,7 +6,7 @@ body {
   font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
   color: #1F292C;
-  background-color: $primary-color;
+  background-color: $color-light;
   margin: 0;
 }
 
@@ -66,50 +66,11 @@ div {
   background-attachment: fixed;
 }
 
-  
-  .container {
-    align-items: center;
-    background-color: $primary-color;
-    border-radius: 10px;
-    box-shadow: 1rem 1rem 2rem rgba(0,0,0,.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 80vh;
-    margin: 0 auto;
-    position: relative;
-    transform: translateY(15%);
-    width: 80vw;
-  
-    @media only screen and (min-width: 350px) {
-      height: 75vh;
-      transform: translateY(25%);
-    } 
-  
-    @media only screen and (min-width: 576px) {
-      width: 70vw;
-    } 
-  
-    @media only screen and (min-width: 768px) {
-      flex-direction: row;
-      height: 60vh;
-      justify-content: space-between;
-      transform: translateY(45%);
-      width: 70vw;
-    } 
-  
-    @media only screen and (min-width: 1200px) {
-      height: 54vh;
-      transform: translateY(50%);
-      width: 45vw;
-    } 
-  }
-  
 /***** FORM *****/
 
   form { 
-    height: 25vh;
-    width: 35vw;
+    height: 40vh;// Big screen 25
+    width: 60vw; // Big screen 35
     align-items: center;
     background-color: #f7f7f7cc;
     color: #dbdbdb;
@@ -117,62 +78,155 @@ div {
     transform: translate(-50%, -50%);
     left: 50%;
     right: 50%;
-    padding: 50px 70px 0px 62px;
+    padding: 30px 60px 0px 55px;
+    //padding: 50px 70px 0px 62px; BIG screen
     box-sizing: border-box;
     border-radius: 10px;
-}
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      padding: 30px 27px 0px 24px;
+      height: 63vh;
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px){
+    height: 60vh;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
+  
   // Change to form-container
   .form-container {
-    margin-top: 25rem;
+    margin-top: 15rem; // Big Screen 25rem
     width: 100vw;
-  }
- 
-  // Form text
-    .form-text {
-        display: flex;
-        flex-direction: column;
-        color: #b9b8b8;
-        font-size: 28px;
-        letter-spacing: 3.5px;
-        line-height: 25px;
-        margin-top: 0;
-        margin-bottom: 1rem;
-        text-align: center;
-        font-weight: 200;
-      }
 
+    // Media Queries
 
-      input {
-        margin-top: 2rem;
-        margin-left: 1.15rem;
-        width: 218px;
-        padding: 15px 10px;
-        border-radius: 5px;
-        border: 1px solid #dbdbdb;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 15px;
-      }
+    // Small Devices
+    @media only screen and (max-width: 500px) {
 
-      button {
-        margin-left: 17.7rem;
-        margin-top: 1.8rem;
-        margin-bottom: 20px;
-        font-size: 18px;
-        width: 200px;
-        padding: 12px;
-        color: $secondary-color;
-        border: 1px solid $secondary-color;
-        border-radius: 5px;
-        background-color: $primary-color;
-        font-family: "Courier New", Courier, monospace;
     }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) {
+    margin-top: 17rem;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
+
+  // Form text
+  .form-text {
+    display: flex;
+    flex-direction: column;
+    color: #b9b8b8;
+    font-size: 28px;
+    letter-spacing: 3.5px;
+    line-height: 25px;
+    margin-top: 0.4rem; // Use to be 0
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 200;
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 0.2rem;
+      margin-left: 0;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
+
+
+  input {
+    margin-top: 2rem;
+    margin-left: 1.15rem;
+    width: 218px;
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px) {
+      margin-left: 4.15rem;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
+      
+  button {
+    margin-left: 17.7rem;
+    margin-top: 1.8rem;
+    margin-bottom: 20px;
+    font-size: 18px;
+    width: 200px;
+    padding: 12px;
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+    background-color: $primary-color;
+    font-family: "Courier New", Courier, monospace;
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      margin-left: 1.7rem;
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px) {
+      margin-left: 4.7rem;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
     
-    button:hover {
-        color: $primary-color;
-        cursor: pointer;
-        background-color: $secondary-color;
-        box-shadow: inset 0 100px 0 0 $secondary-color;
-    } 
+  button:hover {
+    color: $primary-color;
+    cursor: pointer;
+    background-color: $secondary-color;
+    box-shadow: inset 0 100px 0 0 $secondary-color;
+  } 
   
   // Modal
 
@@ -184,29 +238,128 @@ div {
     background-color: #d55d2d73;
   }
   
+  .container {
+    align-items: center;
+    background-color: $primary-color;
+    border-radius: 10px;
+    box-shadow: 1rem 1rem 2rem rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 70vh;
+    margin-bottom: 7rem;
+    position: relative;
+    top: 5rem;
+    left: 15rem;
+    bottom: 10.5rem;
+    //transform: translateY(15%); - BIG screen?
+    width: 65vw; // USe to be 80vw
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      height: 80vh;
+      left: 2.25rem;
+      width: 85vw;
+      flex-direction: column;
+
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px){
+      left: 2.5rem;
+      top: 10rem;
+      height: 55vh;
+      flex-direction: row;
+      width: 90vw;
+      
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  /*
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+      height: 60vh;
+      justify-content: space-between;
+      transform: translateY(45%);
+      width: 70vw;
+    } 
+  
+    @media only screen and (min-width: 1200px) {
+      height: 75vh;// Use to be 54
+      transform: translateY(50%);
+      width: 70vw; // Use to be 45
+    } */
+  }
+  
   .result-image {
-    height: 10rem;
+    height: 75vh; // 100vh
     margin: 1rem 0;
     overflow: hidden;
-    width: 10rem;
-  
+    width: 20vw;
+    border-radius: 10px 0 0 10px;
+  /*
     @media only screen and (min-width: 768px) {
-      height: 13rem;
-      margin: 0 0 0 2rem;
-      width: 13rem;
+      //height: 13rem;
+      //width: 13rem;
     }
   
     @media only screen and (min-width: 992px) {
-      height: 15rem;
-      margin: 0 0 0 4rem;
-      width: 15rem;
+      height: 75vh;
+      border-radius: 10px 0 0 10px;
+      width: 20vw;
+    }*/
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      height: 25vh;
+      width: 25vw;
+      margin-bottom: 0;
+      margin-top: 2rem;
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px){
+    height: 28vh;
+    width: 28vw;
+    padding-left: 20px;
+    margin-right: 1rem;
+    margin-left: 1rem;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
     }
   
     img {
-      border-radius: 50%;
+      //border-radius: 10px 0 0 10px;
       height: 100%;
       object-fit: cover;
       width: 100%;
+
+      // Media Queries
+
+      // Small Devices
+      @media only screen and (max-width: 500px) {
+        border-radius: 50%;
+      }
+
+      // Medium devices
+      @media only screen and (max-width: 768px) and (min-width: 501px){
+      border-radius: 50%;
+
+      }
+
+      // Extra Large screens
+      @media only screen and (min-width: 1500px) {
+
+      }
     }
   }
   
@@ -217,34 +370,58 @@ div {
       display: grid;
       grid-template-columns: 1rem repeat(2, minmax(min-content, 1fr));
       grid-template-rows: repeat(5, min-content);
-      font-size: 1rem;
+      font-size: 1.2rem;
       justify-content: center;
-      padding: 1rem;
+      padding: 1rem 1rem 1rem 3rem;
       width: 100%;
   
-      @media only screen and (min-width: 576px) {
-        font-size: 1.2rem;
+      // Small screens
+      @media only screen and (max-width: 500px) {
+        font-size: 15px; // use to be 1.2
         width: 90%;
+        display: block;
+        padding: 0;
       }
-  
-      @media only screen and (min-width: 768px) {
+
+      // Medium screens
+      @media only screen and (max-width: 768px) and (min-width: 501px) {
         grid-template-columns: 2rem repeat(2, minmax(min-content, 1fr)) minmax(2rem, auto);
        // grid-template-rows: repeat(5, 1fr);
         //font-size: 2vw;
         padding: 2rem 1rem;
         width: 65%;
       }
-  
-      @media only screen and (min-width: 1200px) {
-         padding: 1rem 1rem 1rem 3rem;
+
+      //Extra Large screens
+      @media only screen and (min-width: 1500px) {
+         //padding: 1rem 1rem 1rem 3rem;
       }
   
       .text-result {
         font-weight: 100;
         grid-column: 2/4;
+
+      // Media Queries
+
+      // Small Devices
+      @media only screen and (max-width: 500px) {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
       }
+
+      // Medium devices
+      @media only screen and (max-width: 768px) and (min-width: 501px){
+        font-size: 20px;
+        margin-left: 1rem;
+      }
+
+      // Extra Large screens
+      @media only screen and (min-width: 1500px) {
+
+      }
+    }
   
-     .city {
+      .city-grid {
         grid-row: 1/2;
   
         span {
@@ -252,19 +429,19 @@ div {
         }
       }
   
-      .date {
+      .date-grid {
         grid-row: 2/3;
 
       }
 
-      .days {
+      .days-grid {
         grid-row: 3/4;
   
       }
   
-      .weather {
+      .weather-grid {
         grid-row: 4/5;
- 
+
       }
   
       .button {
@@ -276,12 +453,34 @@ div {
         display: block;
         font-size: 18px;
         opacity: 0.9;
-        padding: 0.5rem 0;
+        padding: 0.7rem 0;
         text-align: center;
         text-decoration: none;
         transition: all 0.3s;
+
+        // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      margin-left: 5.5rem;
+      margin-top: 2rem;
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px){
+      margin-left: 1.5rem;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      width: 170px;
+
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
   
-      @media only screen and (min-width: 576px) {
+      /*@media only screen and (min-width: 576px) {
         padding: 0.6rem 0;
       }
   
@@ -293,8 +492,8 @@ div {
   
       @media only screen and (min-width: 992px) {
         margin-top: 1rem;
-      }
-      }
+      }*/
+  }
   
       .button-print {
         color: $secondary-color;
@@ -311,7 +510,8 @@ div {
         grid-column: 3/4;
         grid-row: 5/6;
         font-size: 18px;
-        
+
+
       }
   
       .button-delete {
@@ -320,6 +520,7 @@ div {
         grid-column: 3/4;
         grid-row: 5/6;
         font-size: 18px;
+
       }
 
       .button-book {
@@ -361,7 +562,68 @@ div {
     box-shadow: inset 0 100px 0 0 $secondary-color;
   }
 
-  
   .hidden {
     display: none;
   }
+
+  // Trip Container
+
+  #trip-section {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .trip-list-text {
+    font-size: 45px;
+    align-content: center;
+    padding-left: 35rem;
+    margin: 3rem 3rem 5rem 3rem;
+
+    // Media Queries
+
+    // Small Devices
+    @media only screen and (max-width: 500px) {
+      font-size: 30px;
+      padding-left: 8rem;
+      margin: 2.5rem 3rem 3rem 3rem;
+    }
+
+    // Medium devices
+    @media only screen and (max-width: 768px) and (min-width: 501px){
+      font-size: 30px;
+      padding-left: 17rem;
+      margin: 3rem 3rem 0 3rem;
+    }
+
+    // Extra Large screens
+    @media only screen and (min-width: 1500px) {
+
+    }
+  }
+
+  .trip-container {
+    position: relative;
+    bottom: 6.5rem;
+    //margin-top: 0;
+    //margin-bottom: 10rem;
+  }
+/****** ADD MEDIA QUERIES IN EACH ELEMENT ******/
+
+// Media Queries
+
+// Small Devices
+@media only screen and (max-width: 600px) {
+
+}
+
+// Medium devices
+@media only screen and (min-width: 768px) {
+
+
+
+}
+
+// Extra Large screens
+@media only screen and (min-width: 1500px) {
+
+}

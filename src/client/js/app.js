@@ -3,6 +3,7 @@ import swal from "sweetalert";
 // Global Variables
 const form = document.querySelector("#form");
 const result = document.querySelector("#result"); // Change to MODAL
+const header = document.querySelector("#header");
 
 const print = document.querySelector("#print");
 //const book = document.querySelector("#book");
@@ -137,17 +138,18 @@ const postTripData = async (url = '', data = {}) => {
 // Function to show the results from user input
 const showModal = async (allData) => {
   result.classList.remove("hidden");
+  header.classList.add("hidden");
   // Fetch city image from Pixabay API
   const response = await fetch(pixabayURL + pixabayKey + "&q=" + allData.destination + "+city&image_type=photo");
 
   try {
     const getImage = await response.json();
-    document.querySelector("#city").innerHTML = allData.destination;
-    document.querySelector("#date").innerHTML = allData.tripDate.split("-").reverse().join("-");
-    document.querySelector("#days").innerHTML = allData.daysToTrip;
-    document.querySelector("#summary").innerHTML = allData.description.toLowerCase();
-    document.querySelector("#weather").innerHTML = Math.round(allData.weather * 9 / 5 + 32)+ "&deg;F";
-    document.querySelector("#pixabay").setAttribute('src', getImage.hits[0].webformatURL);
+    document.querySelector(".city").innerHTML = allData.destination;
+    document.querySelector(".date").innerHTML = allData.tripDate.split("-").reverse().join("-");
+    document.querySelector(".days").innerHTML = allData.daysToTrip;
+    document.querySelector(".summary").innerHTML = allData.description.toLowerCase();
+    document.querySelector(".weather").innerHTML = Math.round(allData.weather * 9 / 5 + 32)+ "&deg;F";
+    document.querySelector(".pixabay").setAttribute('src', getImage.hits[0].webformatURL);
   }
   catch (error) {
     console.log("error", error);
@@ -169,15 +171,15 @@ function template(data) {
             <img class="image" alt="destination image" src="${data.pixabay}">
         </div>
         <div class="result-content">
-                 
+
           <h2 class="city text-result">Destination: <span>${data.destination}</span></h2>
 
-          <h2 class="date text-result">Departing: <span>${data.departing}</span></h2>
+          <h2 class="date text-result">Departing: <span>${data.date}</span></h2>
 
-          <h2 class="days text-result">Trip starts in <span> ${data.days} </span> days</h2>
+          <h2 class="days text-result">Trip starts in <span> ${data.daysToTrip} </span> days</h2>
         
           <h2 class="weather text-result">Weather will be <span>${data.weather}</span> for a high with 
-          <span>${data.summary}</span>.</h2>
+          <span>${data.description}</span>.</h2>
 
           <button class="button button-book" id="book" href="#">Book</button>
 
@@ -203,13 +205,14 @@ book.addEventListener('click', function (event) {
 }
 
 function addToTripList(event) {
-   
+
   const data = {
-      destination: city.value,
-      weather: weather.value,
-      description: summary.value,
-      daysToTrip: days.value,
-      pixabay: pixabay.value
+      destination: document.querySelector(".city").innerHTML.value,
+      date: document.querySelector(".date").innerHTML.value,
+      weather: document.querySelector(".weather").innerHTML.value,
+      description: document.querySelector(".summary").innerHTML.value,
+      daysToTrip: document.querySelector(".date").innerHTML.value,
+      //pixabay: pixabay.value
   };
 
   event.preventDefault();
@@ -224,10 +227,8 @@ save.addEventListener('click', addToTripList, function(event) {
   tripList.scrollIntoView({ behavior: 'smooth' });
   form.reset();
   result.classList.add("hidden");
-}
+})
 
-
-)
 const saved = localStorage.getItem("savedTrips");
 
 if (saved) {
