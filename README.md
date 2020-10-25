@@ -57,7 +57,8 @@ Start up the server in the terminal using ```npm run start``` and open the web p
 
 * How to incorporate a [countdown timer](https://codepen.io/SitePoint/pen/NWxKgxN) for days left before trip
 * Understanding [Node-fetch](https://hackersandslackers.com/making-api-requests-with-nodejs/)
-* How to validate user input with Javascript via [TutorialsPoint](https://www.tutorialspoint.com/javascript/javascript_form_validations.htm
+* How to validate user input with Javascript via 
+[TutorialsPoint](https://www.tutorialspoint.com/javascript/javascript_form_validations.htm)
 * Understanding [regex](https://www.youtube.com/watch?v=6-5Se9Ym1E4)
 * Hide Results until button click via [Stackoverflow](https://stackoverflow.com/questions/56111480/how-can-i-hide-a-div-until-a-button-is-clicked) 
 * [Jest](https://www.valentinog.com/blog/jest/) for beginners
