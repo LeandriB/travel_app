@@ -62,12 +62,9 @@ Start up the server in the terminal using ```npm run start``` and open the web p
 * Hide Results until button click via [Stackoverflow](https://stackoverflow.com/questions/56111480/how-can-i-hide-a-div-until-a-button-is-clicked) 
 * [Jest](https://www.valentinog.com/blog/jest/) for beginners
 * Getting started with [Jest](https://jestjs.io/docs/en/getting-started)
+* How to test [Regular Expressions](https://stackoverflow.com/questions/51850672/how-to-test-this-regex-in-jest) with jest via Stackoverflow
 * How to convert Celcius to Farenheit via [Stackoverflow](https://stackoverflow.com/questions/26046474/celsius-and-fahrenheit-converter-javascript)
 * How to create an [inline form](https://www.w3schools.com/howto/howto_css_inline_form.asp) that is responsive.
 * Home-Image from [Annie Spratt](https://unsplash.com/photos/qyAka7W5uMY) via Unsplash.
 * How to flip a date around to show day before year via [Stackoverflow](https://stackoverflow.com/questions/40232218/how-to-reverse-date-format-yyyy-mm-dd-using-javascript-jquery)
 * How to open in new window via [w3schools.com](https://www.w3schools.com/jsref/met_win_open.asp)
-* Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> - weather
-* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> - destination
-* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> - calender
-* Icons made by <a href="https://www.flaticon.com/free-icon/travel-luggage_2721425" title="Linector">Linector</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> - suitcase
