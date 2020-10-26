@@ -69,3 +69,4 @@ Start up the server in the terminal using ```npm run start``` and open the web p
 * Home-Image from [Annie Spratt](https://unsplash.com/photos/qyAka7W5uMY) via Unsplash.
 * How to flip a date around to show day before year via [Stackoverflow](https://stackoverflow.com/questions/40232218/how-to-reverse-date-format-yyyy-mm-dd-using-javascript-jquery)
 * How to open in new window via [w3schools.com](https://www.w3schools.com/jsref/met_win_open.asp)
+* Hoow to use Local Storage with JS via [Web-Crunch on Youtube](https://www.youtube.com/watch?v=AfVUiQ-my4Q&t=1462s) 
