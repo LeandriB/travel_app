@@ -12,24 +12,17 @@ const dateNow = (Date.now()) / 1000;
 
 // Declare API credentials for Geonames below
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
-const geoNamesKey = "leandrib";
+const geoNamesKey = process.env.API_KEY1;
 
 // Declare API credentials for Weatherbit below
 const weatherbitURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
-const weatherbitKey = "ac2c8a9006ad4596839cd8e73f27220f";
+const weatherbitKey = process.env.API_KEY2;
 
 // Declare API credentials for Pixabay below
 const pixabayURL = "https://pixabay.com/api/?key=";
-const pixabayKey = "18210327-5150d9b47ecfb966ec7bb906c";
+const pixabayKey = process.env.API_KEY3;
 
 // EVENT LISTENERS
-
-// add trip button
-//const addTripEvList = addTripButton.addEventListener('click', function (e) {
-  //e.preventDefault();
- // planner.scrollIntoView({ behavior: 'smooth' });
-//})
-//ABOVE CODE REMOVES ADD TRIP BUTTON
 
 // Submit form button
 form.addEventListener('submit', addTrip);

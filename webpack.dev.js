@@ -2,7 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const GoogleFontsPlugin = require('google-fonts-plugin');
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = {
     entry: './src/client/index.js',
@@ -49,11 +50,10 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new GoogleFontsPlugin({
-            fonts: [
-              { family: "Gochi Hand" },
-              { family: "Open Sans" }
-            ]
-          })
+        new webpack.DefinePlugin({
+            'process.env.API_KEY1' : JSON.stringify(process.env.API_KEY1),
+            'process.env.API_KEY2' : JSON.stringify(process.env.API_KEY2),
+            'process.env.API_KEY3' : JSON.stringify(process.env.API_KEY3),
+        })
     ]
 }
