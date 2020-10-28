@@ -22,7 +22,7 @@
         
             <!-- Form -->
         
-            <section id="form-section" class="section section__planner">
+            <section id="form-section" class="section">
               <div class="form-container">
                 <form class="form__content" id="form">
                   <h2 class="form-text">Plan your trip</h2>
@@ -40,37 +40,42 @@
 
             <!-- Modal pop-up -->
         
-            <section id="result" class="result-container section__result hidden">
+            <section id="result" class="result-container hidden">
               <div class="container results">
                 <div class="result-image">
                   <img alt="destination image" class="pixabay">
                 </div>
                 <div class="result-content">
-                
                   <h2 class="city-grid text-result">Destination: <span class="city"></span></h2>
-
                   <h2 class="date-grid text-result">Departing: <span class="date">DD/MM/YYYY</span></h2>
-
                   <h2 class="days-grid text-result">Trip starts in <span class="days"> NUM </span> days</h2>
-        
                   <h2 class="weather-grid text-result">Weather will be <span class="weather"></span> for a high with <span
                       class="summary"></span>.</h2>
-                      <!-- Change print button to SAVE for local storage-->
+                  <!-- Change print button to BOOK for local storage-->
                   <button class="button button-print" id="print" href="#">Print</button>
-                  <!-- Change delete button to CANCEL -->
-                  <button class="button button-save" id="save" href="#">Save</button>
+                  <!-- Change delete button to SAVE for local storage -->
+                  <button class="button button-save" id="delete" href="#">Delete</button>
         
                 </div>
               </div>
             </section>
         </section>
-     </section>
-     <section class="top-line"></section>
-     <section id="trip-section" class="section">
-       <h2 class="trip-list-text">Trip List</h2>
-       <div class="trip-container">
-       </div>
-    </section>
+      </section>
+      <footer class="footer-text">&copy; Copyright LeandriB </footer>
+      <section class="top-line"></section>
+      <!--<section id="trip-section" class="section">
+          <h2 class="trip-list-text">Trip List</h2>
+          <div class="trip-container"></div>
+    </section>-->
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/service-worker.js');
+          });
+      }
+  </script>
   
 </body>
 
