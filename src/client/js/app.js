@@ -2,11 +2,8 @@ import swal from "sweetalert";
 
 // Global Variables
 const form = document.querySelector("#form");
-const result = document.querySelector("#result"); // Change to MODAL
+const result = document.querySelector("#result");
 const header = document.querySelector("#header");
-
-const print = document.querySelector("#print");
-//const book = document.querySelector("#book");
 
 const dateNow = (Date.now()) / 1000;
 
@@ -22,21 +19,13 @@ const weatherbitKey = process.env.API_KEY2;
 const pixabayURL = "https://pixabay.com/api/?key=";
 const pixabayKey = process.env.API_KEY3;
 
-// EVENT LISTENERS
-
 // Submit form button
 form.addEventListener('submit', addTrip);
-// Print button
-print.addEventListener('click', function (event) {
-  event.preventDefault(event);
-  window.print();
-  location.reload();
-});
 
-// FUNCTIONS 
+/***** FUNCTIONS *****/  
 
 // Function callback for event listener
-function addTrip(event) {
+function addTrip() {
   event.preventDefault();
   //  User input
   const departing = document.getElementById('input-from').value;
@@ -78,7 +67,7 @@ const getCity = async (geoNamesURL, destination, geoNamesKey) => {
   }
 };
 
-// Functiont to get weather data from Weatherbit API
+// Function to get weather data from Weatherbit API
 const getWeather = async (latitude, longitude) => {
   const response = await fetch(weatherbitURL + "lat=" + latitude + "&lon=" + longitude + "&key=" + weatherbitKey);
   try {
@@ -120,6 +109,7 @@ const postTripData = async (url = '', data = {}) => {
 const showModal = async (allData) => {
   result.classList.remove("hidden");
   header.classList.add("hidden");
+  form.classList.add("hidden");
   // Fetch city image from Pixabay API
   const response = await fetch(pixabayURL + pixabayKey + "&q=" + allData.destination + "+city&image_type=photo");
 
@@ -139,7 +129,7 @@ const showModal = async (allData) => {
 }
 
 export { showModal,
-         postTripData,
-         getWeather,
-         getCity,
-         addTrip }
+        postTripData,
+        getWeather,
+        getCity,
+        addTrip }
