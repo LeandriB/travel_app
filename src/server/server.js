@@ -22,6 +22,7 @@ app.use(cors());
 
 // Require node-fetch
 const fetch = require('node-fetch');
+const { response } = require('express');
 
 // Designates what port the app will listen to for incoming requests
 const port = 5500;
@@ -34,6 +35,10 @@ function listening() {
 // GET Route
 app.get('/', function (request, response) {
   response.sendFile('dist/index.html')
+})
+
+app.get('/test', async (request, response) => {
+  response.json({message: 'Test Passed'})
 })
 
 // POST Route
@@ -49,3 +54,5 @@ function tripInfo(request, response) {
   console.log("User Input: ", tripData)
   response.send(tripData);
 }
+
+module.exports = app
