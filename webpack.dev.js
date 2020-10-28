@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -50,6 +51,7 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
+        new WorkboxPlugin.GenerateSW(),
         new webpack.DefinePlugin({
             'process.env.API_KEY1' : JSON.stringify(process.env.API_KEY1),
             'process.env.API_KEY2' : JSON.stringify(process.env.API_KEY2),
